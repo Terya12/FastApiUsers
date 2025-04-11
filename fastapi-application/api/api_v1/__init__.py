@@ -2,7 +2,11 @@ from fastapi import APIRouter, Depends
 from fastapi.security import HTTPBearer
 from .auth import router as auth_router
 from .users import router as users_router
+from .messages import router as messages_router
 from core.config import settings
+
+
+
 
 http_bearer = HTTPBearer(auto_error=False)
 router = APIRouter(
@@ -13,3 +17,4 @@ router = APIRouter(
 )
 router.include_router(auth_router)
 router.include_router(users_router)
+router.include_router(messages_router)

@@ -1,8 +1,9 @@
 import logging
+import re
 from typing import Optional
 
 from fastapi import Request
-from fastapi_users import BaseUserManager, IntegerIDMixin
+from fastapi_users import BaseUserManager, IntegerIDMixin, InvalidPasswordException
 from core.config import settings
 from core.types.user_id import UserIDType
 from core.models.user import User
@@ -48,3 +49,47 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, UserIDType]):
             token,
         )
 
+    # async def validate_password(
+    #     self,
+    #     password: str,
+    #     user: Optional[User] = None,
+    # ) -> None:
+    #     # Проверка минимальной длины пароля
+    #     if len(password) < 8:
+    #         raise InvalidPasswordException(
+    #             reason="Password should be at least 8 characters"
+    #         )
+
+    #     # Проверка на наличие хотя бы одной цифры
+    #     if not re.search(r'\d', password):
+    #         raise InvalidPasswordException(
+    #             reason="Password should contain at least one digit"
+    #         )
+
+    #     # Проверка на наличие хотя бы одного специального символа
+    #     if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+    #         raise InvalidPasswordException(
+    #             reason="Password should contain at least one special character"
+    #         )
+
+    #     # Проверка на наличие хотя бы одной буквы в верхнем и одном в нижнем регистре
+    #     if not re.search(r'[A-Z]', password):
+    #         raise InvalidPasswordException(
+    #             reason="Password should contain at least one uppercase letter"
+    #         )
+    #     if not re.search(r'[a-z]', password):
+    #         raise InvalidPasswordException(
+    #             reason="Password should contain at least one lowercase letter"
+    #         )
+
+    #     # Проверка на отсутствие простых последовательностей
+    #     if re.search(r'(1234|abcd|password)', password):
+    #         raise InvalidPasswordException(
+    #             reason="Password should not contain simple sequences like '1234' or 'abcd'"
+    #         )
+
+    #     # Проверка на отсутствие повторяющихся символов
+    #     if re.search(r'(.)\1{2,}', password):  # 3 одинаковых символа подряд
+    #         raise InvalidPasswordException(
+    #             reason="Password should not contain repeated characters like 'aaa'"
+    #         )

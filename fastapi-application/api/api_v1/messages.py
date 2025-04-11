@@ -10,5 +10,5 @@ router = APIRouter(
 
 
 @router.get("/")
-async def get_user_masseges():
+async def get_user_messages():
     pass

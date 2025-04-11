@@ -9,3 +9,7 @@ fastapi_users = FastAPIUsers[User, UserIDType](
     get_user_manager,
     [authentication_backends],
 )
+
+
+current_user = fastapi_users.current_user(active=True)
+current_super_user = fastapi_users.current_user(superuser=True)

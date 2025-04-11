@@ -19,6 +19,7 @@ router = APIRouter(
 router.include_router(
     fastapi_users.get_auth_router(
         authentication_backends,
+        # requires_verification=True,      # обязательное подтверждение почты
     ),
 )
 

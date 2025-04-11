@@ -13,6 +13,7 @@ alembic = "^1.13.1"
 fastapi-users = {extras = ["sqlalchemy"], version = "^13.0.0"}
 gunicorn = "^23.0.0"
 aiohttp = "^3.11.7"
+orjson = "^3.10.16"
 
 
 [tool.poetry.group.dev.dependencies]

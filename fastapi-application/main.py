@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
-
+from fastapi.middleware.cors import CORSMiddleware
 from core.config import settings
 
 from api import router as api_router
@@ -22,6 +22,15 @@ main_app = FastAPI(
     default_response_class=ORJSONResponse,
     lifespan=lifespan,
 )
+
+main_app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Разрешаем только твой фронтенд-адрес
+    allow_credentials=True,
+    allow_methods=["*"],  # Разрешаем все HTTP-методы
+    allow_headers=["*"],  # Разрешаем все заголовки
+)
+
 main_app.include_router(
     api_router,
 )
